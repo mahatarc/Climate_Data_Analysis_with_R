@@ -1,0 +1,73 @@
+\chapter{Preparing Climate Data with R in Colab}
+
+Welcome to the practical side of data analysis! In Chapter 1, we explored the power of R packages. Now, we’ll apply that knowledge to a real-world scenario: working with climate data. Climate data, like weather station readings (temperature, precipitation, etc.), is fascinating but often comes with imperfections. It might have missing measurements, incorrect values, or inconsistent formats.
+
+Before we can analyze data and draw meaningful conclusions, we must clean and preprocess it. This means identifying and fixing errors, handling missing information, and transforming the data into a suitable format for analysis. Think of it like preparing your ingredients before cooking – essential for a good final result!
+
+In this chapter, we’ll use Google Colaboratory (Colab), a free, cloud-based platform that lets you write and run code (including R!) directly in your web browser. This is fantastic because you don’t need to install complex software on your own computer, and you can easily save and share your work.
+
+\section{Setting Up Your Colab Environment for R}
+
+Google Colab primarily supports Python, but we can easily configure it to run R code. To set up R environment we can perform following steps:
+
+\begin{enumerate}
+    \item \textbf{Access Google Colab:} Open your web browser and go to \url{https://colab.research.google.com}. You’ll need a Google account to use it.
+    \item \textbf{Create a New Notebook:} Click on \texttt{File} $\rightarrow$ \texttt{New notebook}. This creates a new, empty Colab notebook file (which is automatically saved to your Google Drive). Rename it something descriptive, like ``Climate Dataset Analysis.''
+    \item \textbf{Understanding the Interface:}
+    \begin{itemize}
+        \item \textbf{Cells:} Colab notebooks are made of cells. You’ll use Code cells to write and run R code and Text cells to add notes and explanations using Markdown.
+        \item \textbf{Runtime:} This is the virtual machine in the cloud running your code.
+        \item \textbf{Running Cells:} To run a cell, click the play button to its left or press \texttt{Shift + Enter}.
+    \end{itemize}
+    \item \textbf{Change Runtime to R:}
+    \begin{itemize}
+        \item Click \texttt{Runtime} on the menu.
+        \item Choose \texttt{Change runtime type}.
+        \item In the dropdown under ``Language,'' select \texttt{R}.
+        \item Click \texttt{Save}.
+    \end{itemize}
+    \item \textbf{Installing Packages:} As shown in the setup cell, you install R packages in Colab just like you would locally, using \texttt{install.packages("package name")}. Any packages you install will be available for your current session but might need reinstalling if the runtime fully resets after a long period of inactivity.
+\end{enumerate}
+
+\section{Getting Climate Data into Colab}
+
+Now we need some reliable data to conduct meaningful analysis. In this chapter, we will work with climate data from Nepal, covering the period from 1980 to 2019. This dataset includes important environmental indicators such as temperature, precipitation, and humidity, which will help us explore climate trends over time.
+
+\subsection*{Where to Find Climate Data:}
+
+The dataset used in this chapter is publicly available on the Kaggle platform, a popular repository for datasets and data science projects. The dataset contains climate data for Nepal, including various meteorological parameters. These data were sourced from the NASA Langley Research Center (LaRC) POWER Project, which is funded through the NASA Earth Science/Applied Science Program. The data was extracted via NASA’s Power Access API. The information is based on measurements from 93 weather stations across 62 districts in Nepal, providing a comprehensive view of the country’s climate. We will import the required dataset directly from Kaggle. Make sure you have a Kaggle account.
+
+You can view or download the dataset using the following link:
+
+\medskip
+
+\href{https://www.kaggle.com/code/saimondahal/nepal-climate-data-eda-insights/input}{Click here to access the dataset on Kaggle
+}
+\medskip
+
+\subsection*{Loading Dataset in Colab:}
+
+The dataset that we downloaded is in \texttt{.csv} format. We can rename the downloaded dataset as \texttt{dailyclimate.csv}. There are many ways to load the dataset in the Colab environment.
+\begin{enumerate}
+\item {Uploading Directly (Best for small files, $<$ 25MB)}  
+    \begin{itemize}
+        \item Click the folder icon in the left sidebar of Colab.
+        \item Click the ``Upload'' button.
+        \item Select your \texttt{weather data raw.csv} file from your computer.
+    \end{itemize}
+\noindent \textit{Note: Files uploaded this way disappear when the runtime restarts.}
+
+\item {Mounting Google Drive (Recommended for larger/persistent files)}  
+For this you must have the \texttt{dailyclimate.csv} in your Google Drive. Place your \texttt{dailyclimate.csv} file somewhere convenient in your Google Drive (e.g., in a folder called \texttt{Colab Data}).
+
+    \begin{itemize}
+        \item Click the folder icon in the left sidebar.
+        \item Click the ``Mount Drive'' button (looks like a Google Drive logo).
+        \item Follow the prompts in the popup window and the new code cell that appears. You’ll need to authorize Colab to access your Google Drive.
+        \item Once mounted, your Google Drive files will appear under \texttt{/content/drive/MyDrive/}. You can navigate this like any other folder system.
+    \end{itemize}
+\end{enumerate}
+We have successfully loaded the dataset in our Colab environment and now we can begin our data preparation for analysis.
+
+\input{chapter 2/explore}
+\input{chapter 2/prep}

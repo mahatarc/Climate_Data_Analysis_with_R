@@ -1,0 +1,97 @@
+\chapter{Case Studies and Applications}
+
+\section*{Scenario 1: Ideal Harvesting Time for Hilly Areas}
+
+Farmers in hilly areas often struggle to decide the best time to harvest crops. Certain crops thrive only under specific environmental conditions—neither too hot nor too wet. With the help of climate data analysis, we aim to provide a data-driven recommendation.
+
+\subsection*{Objective}
+Identify the months in which both temperature and rainfall are within a moderate range, ideal for harvesting.
+
+\subsection*{Step 1: Understanding the Data}
+We use a dataset containing daily climate observations. The relevant variables for this case study include:
+\begin{itemize}
+  \item \textbf{Temp\_2m}: Daily average temperature (°C)
+  \item \textbf{Precip}: Daily total precipitation (mm)
+  \item \textbf{Month}: Month extracted from the date
+\end{itemize}
+
+\subsection*{Step 2: Define Moderate Conditions}
+To define what constitutes a ``moderate'' range for temperature and rainfall, we calculate the 25th and 75th percentiles. This approach, known as the interquartile range (IQR), captures the central 50\% of the data, filtering out extreme values.
+
+\textbf{R Code:}
+\begin{verbatim}
+temp_range <- climate_data %>%
+  summarise(
+    q25_temp = quantile(Temp_2m, 0.25, na.rm = TRUE),
+    q75_temp = quantile(Temp_2m, 0.75, na.rm = TRUE)
+  )
+
+precip_range <- climate_data %>%
+  summarise(
+    q25_precip= quantile(Precip, 0.25, na.rm = TRUE),
+    q75_precip = quantile(Precip, 0.75, na.rm = TRUE)
+  )
+\end{verbatim}
+
+\textbf{Mathematically, the moderate ranges are defined as:}
+\[
+\text{Moderate Temperature Range} = \left[ Q^{\text{Temp}}_{25},\; Q^{\text{Temp}}_{75} \right]
+\]
+
+\[
+\text{Moderate Rainfall Range} = \left[ Q^{\text{Precip}}_{25},\; Q^{\text{Precip}}_{75} \right]
+\]
+
+\begin{verbatim}
+moderate_temp_range <- c(temp_range$q25_temp, temp_range$q75_temp)
+moderate_rainfall_range<-c(precip_range$q25_precip, precip_range$q75_precip)
+
+# Print moderate ranges
+moderate_temp_range
+moderate_rainfall_range
+\end{verbatim}
+
+\subsection*{Step 3: Analyze Monthly Averages}
+With the moderate ranges established, we now compute the monthly averages of temperature and rainfall. We then identify months whose averages fall within both moderate ranges.
+
+\textbf{R Code:}
+\begin{verbatim}
+monthly_summary <- climate_data %>%
+  group_by(Month) %>%
+  summarize(
+    avg_temp = mean(Temp_2m, na.rm = FALSE),
+    avg_precip = mean(Precip, na.rm = FALSE)
+  )
+suitable_months <- monthly_summary %>%
+  dplyr::filter(
+    avg_temp >= moderate_temp_range[1] & avg_temp <= moderate_temp_range[2],
+    avg_precip >= moderate_rainfall_range[1] & 
+avg_precip <= moderate_rainfall_range[2]
+  )
+print(suitable_months)
+\end{verbatim}
+
+\textbf{Based on this analysis, the following months are identified as having both moderate temperature and moderate rainfall:}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Month} & \textbf{Average Temperature (°C)} & \textbf{Average Precipitation (mm)} \\
+\hline
+Mar & 13.8 & 0.547 \\
+Apr & 18.4 & 0.801 \\
+Oct & 15.8 & 1.15 \\
+Nov & 12.0 & 0.134 \\
+\hline
+\end{tabular}
+\caption{Average temperature and precipitation values for selected months.}
+\end{table}
+
+These months are ideal for harvesting crops that are sensitive to extreme weather conditions.
+
+\subsection*{Conclusion}
+This case study demonstrates how statistical concepts—specifically percentiles and the interquartile range—can be applied to real-world agricultural planning. Using R, we processed climate data to guide harvesting decisions in hilly regions. This approach exemplifies how climate analytics can directly support informed, local decision-making.
+
+\input{chapter 9/case2.tex}
+\input{chapter 9/questions.tex}

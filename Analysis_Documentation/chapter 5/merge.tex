@@ -1,0 +1,51 @@
+\section{Merging Agriculture Data with Climate Data}
+
+Previously, in the data slicing chapter, we created a subset of the climate dataset that includes only the districts classified as hilly regions. In this section, we will use this filtered climate data to merge with the agriculture dataset and perform agricultural analysis focused on the hilly region.
+
+\subsection*{Filtering Hilly Region Data}
+We first create a vector containing the list of districts in the hilly region:
+
+\begin{verbatim}
+districts_to_filter <- c("Arghakhanchi", "Baglung", "Baitadi", "Bhaktapur",
+"Chitwan", "Dadeldhura", "Dailekh", "Dhading","Dhankuta", "Dolpa","Gorkha",
+"Gulmi", "Ilam", "Jumla", "Kabhre", "Kaski", "Kathmandu", "Lalitpur",
+"Lamjung", "Makwanpur", "Myagdi", "Nuwakot","Okhaldhunga","Palpa","Parbat",
+"Rukum", "Salyan", "Sindhuli", "Surkhet", "Syangja")
+\end{verbatim}
+
+Then, we filter the climate dataset to include only the records corresponding to these districts:
+
+\begin{verbatim}
+filtered_hilly_data <- subset(df_climate, District %in% districts_to_filter)
+\end{verbatim}
+
+\subsection*{Extracting the Year from the Date Column}
+Before merging the datasets, we need to extract the \texttt{Year} from the \texttt{Date} column in the filtered climate data:
+
+\begin{verbatim}
+filtered_hilly_data$Year <- year(filtered_hilly_data$Date)
+\end{verbatim}
+
+\subsection*{Saving the Filtered Dataset}
+After filtering and extracting the year, we save the filtered dataset as a CSV file for future use:
+
+\begin{verbatim}
+write.csv(filtered_hilly_data,row.names = FALSE,file ="dataframe_hilly.csv")
+\end{verbatim}
+
+\subsection*{Merge Criteria}
+To ensure proper alignment of the datasets, we merge them based on the following common identifiers:
+\begin{itemize}
+    \item \textbf{District:} The administrative region where both agricultural and climate data were recorded.
+    \item \textbf{Year:} The calendar year of the recorded observations.
+\end{itemize}
+
+\subsection*{Merging the Datasets}
+We merge the agricultural dataset \texttt{data\_agri\_clean} with the filtered hilly region climate dataset \texttt{filtered\_hilly\_data} based on the common identifiers:
+
+\begin{verbatim}
+merged_data <- merge(data_agri_clean, filtered_hilly_data, 
+by = c("District", "Year"), all = FALSE) 
+\end{verbatim}
+
+This command performs an inner join, ensuring that only records with matching \texttt{District} and \texttt{Year} from both datasets are retained.

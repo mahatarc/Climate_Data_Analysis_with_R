@@ -1,0 +1,10 @@
+*main.log
+
+*.aux
+*.log
+*.toc
+*.out
+*.gz
+*.blg
+*.bbl
+*.pdf

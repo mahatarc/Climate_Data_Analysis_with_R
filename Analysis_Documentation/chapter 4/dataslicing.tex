@@ -1,0 +1,84 @@
+\chapter{Data Slicing}
+
+\section*{What is Data Slicing?}
+
+Data slicing is the process of selecting specific parts of a dataset, such as certain rows, columns, or time intervals, for focused analysis. Think of a data set as a large spreadsheet with rows (observations) and columns (variables). Data slicing allows us to extract only the portion we need at the moment. It is a crucial skill in data analysis because it helps us to understand and work with complex data more efficiently.
+
+\section*{Why is Data Slicing Important?}
+
+Data slicing is important for several reasons:
+\begin{itemize}
+    \item \textbf{Focus on relevant data:} We rarely need the entire dataset at once. Slicing helps us extract just the part we want to study.
+    \item \textbf{Improve performance:} Working with smaller subsets reduces memory usage and increases speed, especially for large datasets.
+    \item \textbf{Enable deeper insights:} Slicing lets us compare specific groups, such as cities, months, or weather types, within the data set.
+    \item \textbf{Prepare for visualization:} Often we only want to visualize a specific variable or a time frame, not the whole dataset.
+    \item \textbf{Aid in cleaning and validation:} We can inspect subsets for missing or abnormal values more easily.
+\end{itemize}
+
+\section*{Common Types of Slicing}
+
+\begin{itemize}
+    \item \textbf{Row Slicing:} Selecting specific observations (e.g., all records for March 2021).
+    \item \textbf{Column Slicing:} Selecting specific variables (e.g., only Date and Temperature).
+    \item \textbf{Conditional Slicing:} Filtering rows based on conditions (e.g., Temperature > 35 °C).
+    \item \textbf{Time-based Slicing:} Extracting data for certain dates or periods.
+    \item \textbf{Group-based Slicing:} Filtering data by category (e.g., one district or season).
+\end{itemize}
+
+\section*{Examples in R}
+
+\subsection*{Basic Row and Column Slicing}
+\begin{verbatim}
+# First 10 rows and first 3 columns 
+df_climate[1:10, 1:3]
+\end{verbatim}
+
+\subsection*{Slicing with Conditions}
+\begin{verbatim}
+# Days with rainfall greater than 10 mm
+df_climate[df_climate$Rainfall > 10, ]
+\end{verbatim}
+
+\subsection*{Using \texttt{dplyr} for Readability}
+\begin{verbatim}
+library(dplyr)
+# Days in July with temperature above 32 °C 
+df_climate %>% filter(month(Date) == 7, Temperature > 32)
+\end{verbatim}
+
+\subsection*{Slicing Time Ranges Using \texttt{tsibble}}
+\begin{verbatim}
+library(tsibble)
+# Data between 2020-06-01 and 2020-08-31 
+df_climate %>%
+  filter(Date >= as.Date("2020-06-01") & Date <= as.Date("2020-08-31"))
+\end{verbatim}
+
+\subsection*{Group-based Slicing}
+\begin{verbatim}
+# Data for only "Kathmandu" district
+df_climate %>%
+  filter(District == "Kathmandu")
+\end{verbatim}
+
+\section*{Useful Libraries for Data Slicing in R}
+
+\begin{itemize}
+    \item \textbf{dplyr} : Offers functions like \texttt{filter()}, \texttt{select()}, \texttt{slice()}, and \texttt{arrange()} for easy row/column selection.
+    \item \textbf{tsibble} : Ideal for time series slicing. Lets you work with indexed time data.
+    \item \textbf{lubridate} : Helps extract parts of a date (e.g., year, month, weekday) for conditional filtering.
+    \item \textbf{data.table} : Very fast slicing, great for large datasets. Syntax is concise and powerful.
+\end{itemize}
+
+\section*{Best Practices for Data Slicing}
+
+\begin{itemize}
+    \item Use descriptive column names for easier selection.
+    \item Always check the structure of your data using \texttt{str()} or \texttt{glimpse()} before slicing.
+    \item When slicing by date, ensure the column is in Date format using \texttt{as.Date()}.
+    \item Chain multiple operations with \texttt{dplyr} to make slicing more readable.
+\end{itemize}
+
+\input{chapter 4/hilly}
+\input{chapter 4/western}
+\input{chapter 4/timebased}
