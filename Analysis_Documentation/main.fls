@@ -1,8 +1,8 @@
-PWD d:/R Project/documentation
+PWD d:/R Project/Analysis_Documentation
 INPUT c:/texlive/2025/texmf.cnf
 INPUT c:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT d:/R Project/documentation/main.tex
+INPUT d:/R Project/Analysis_Documentation/main.tex
 OUTPUT main.log
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/book.cls
@@ -762,6 +762,84 @@ INPUT ./figures/case2.jpg
 INPUT ./chapter 9/questions.tex
 INPUT ./chapter 9/questions.tex
 INPUT chapter 9/questions.tex
+INPUT ./chapter 10/jasp_intro.tex
+INPUT ./chapter 10/jasp_intro.tex
+INPUT chapter 10/jasp_intro.tex
+INPUT ./figures/edit option.png
+INPUT ./figures/edit option.png
+INPUT ./figures/edit option.png
+INPUT ./figures/edit option.png
+INPUT ./figures/edit option.png
+INPUT ./figures/edit mode.png
+INPUT ./figures/edit mode.png
+INPUT ./figures/edit mode.png
+INPUT ./figures/edit mode.png
+INPUT ./figures/edit mode.png
+INPUT ./figures/year_col.png
+INPUT ./figures/year_col.png
+INPUT ./figures/year_col.png
+INPUT ./figures/year_col.png
+INPUT ./figures/year_col.png
+INPUT ./chapter 10/descriptive_stats.tex
+INPUT ./chapter 10/descriptive_stats.tex
+INPUT chapter 10/descriptive_stats.tex
+INPUT ./figures/jasp_descriptivestats.png
+INPUT ./figures/jasp_descriptivestats.png
+INPUT ./figures/jasp_descriptivestats.png
+INPUT ./figures/jasp_descriptivestats.png
+INPUT ./figures/jasp_descriptivestats.png
+INPUT ./figures/histogram.png
+INPUT ./figures/histogram.png
+INPUT ./figures/histogram.png
+INPUT ./figures/histogram.png
+INPUT ./figures/histogram.png
+INPUT ./figures/boxplot.png
+INPUT ./figures/boxplot.png
+INPUT ./figures/boxplot.png
+INPUT ./figures/boxplot.png
+INPUT ./figures/boxplot.png
+INPUT ./chapter 10/correlation.tex
+INPUT ./chapter 10/correlation.tex
+INPUT chapter 10/correlation.tex
+INPUT ./figures/corr_jasp.png
+INPUT ./figures/corr_jasp.png
+INPUT ./figures/corr_jasp.png
+INPUT ./figures/corr_jasp.png
+INPUT ./figures/corr_jasp.png
+INPUT ./figures/heatmap_jasp.png
+INPUT ./figures/heatmap_jasp.png
+INPUT ./figures/heatmap_jasp.png
+INPUT ./figures/heatmap_jasp.png
+INPUT ./figures/heatmap_jasp.png
+INPUT ./chapter 10/regression.tex
+INPUT ./chapter 10/regression.tex
+INPUT chapter 10/regression.tex
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib8.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib6.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm
+INPUT ./figures/regression_jasp.png
+INPUT ./figures/regression_jasp.png
+INPUT ./figures/regression_jasp.png
+INPUT ./figures/regression_jasp.png
+INPUT ./figures/regression_jasp.png
+INPUT ./figures/regression_plot.png
+INPUT ./figures/regression_plot.png
+INPUT ./figures/regression_plot.png
+INPUT ./figures/regression_plot.png
+INPUT ./figures/regression_plot.png
+INPUT ./chapter 10/anova.tex
+INPUT ./chapter 10/anova.tex
+INPUT chapter 10/anova.tex
+INPUT ./figures/ANOVA.png
+INPUT ./figures/ANOVA.png
+INPUT ./figures/ANOVA.png
+INPUT ./figures/ANOVA.png
+INPUT ./figures/ANOVA.png
 INPUT ./chapter 11/ai.tex
 INPUT ./chapter 11/ai.tex
 INPUT chapter 11/ai.tex
@@ -804,9 +882,11 @@ INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb

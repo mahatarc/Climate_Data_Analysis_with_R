@@ -1,0 +1,151 @@
+\chapter{Exploration with JASP}
+
+When working with data, one of the first things we do is explore by trying to understand what the data is about, check for patterns, spot unusual values, and get a feel for the numbers before diving into deeper analysis. This step is often called exploratory data analysis (EDA), and it helps us understand what our dataset looks like, what patterns might be hiding in it, and whether anything stands out as unusual or interesting.
+
+Now, you might be thinking:\\
+“Can’t we do all this in code using tools like Google Colab or R?”\\
+Yes, we absolutely can. But writing code for every single analysis can be time-consuming, especially when we’re just trying to get a quick overview or still learning the basics. Not everyone is comfortable writing code, especially when they are just beginning their journey in data analysis. Sometimes, you just want to take a quick look at the data, run a few simple summaries, and make some graphs  without worrying about syntax or errors. This is where JASP becomes incredibly useful.
+
+\textbf{JASP (Jeffreys’s Amazing Statistics Program)} is a free and open-source software that was built to make statistical analysis easier, faster, and more accessible to everyone. With just a few clicks, you can:
+
+\begin{itemize}
+    \item Load datasets and view them in spreadsheet format
+
+    \item Generate descriptive statistics (like mean, median, standard deviation)
+
+    \item Create beautiful visualizations (like histograms, boxplots, and scatterplots)
+
+    \item Run statistical tests (like t-tests, ANOVA, regression, and more)
+
+    \item Explore your data interactively without worrying about code or syntax errors
+
+\end{itemize}
+
+In this chapter, we’ll explore our climate dataset using a tool called JASP. JASP is designed to make data analysis easier and more visual, especially for those who are new to statistics or don’t feel comfortable writing code. You’ll learn how to open your dataset, look at its basic features, and create simple graphs to help you understand what the data is saying.  Even if you’ve never used a statistical tool before, don’t worry, by the end of this chapter, you’ll feel much more confident using JASP to find patterns and insights in your data.
+
+When I first started working with a large climate dataset, I was excited to dive in and start analyzing. But I quickly realized that JASP was having trouble handling such a big file. It would take a while to load, and some actions became really slow. That’s when I decided to take a step back and simplify things a little.
+
+To make the dataset easier to work with, I used Google Colab to filter and simplify it. I selected only the relevant variables and took a smaller sample that still represented the overall data well. This helped reduce the size without losing important information. Once I had a cleaner and more manageable dataset, I moved on to analyzing it in JASP. In this chapter, I’ll walk you through how I cleaned the data using Google Colab and then used JASP to uncover interesting trends and patterns in the climate dataset.
+
+\section*{Filtering the Data in Google Colab}
+
+The following R code was used to filter the climate dataset for analysis in JASP. It includes filtering by date and selecting specific districts.
+
+\begin{verbatim}
+# Convert the Date column to proper Date format
+df_climate$Date <- as.Date(df_climate$Date, format = "%Y-%m-%d")
+
+# Filter the dataset for the years 2010 to 2019
+df_filtered <- df_climate %>%
+  filter(lubridate::year(Date) >= 2010 & lubridate::year(Date) <= 2019)
+
+# Further filter for selected districts
+df_filtered <- df_filtered %>%
+  filter(District %in% c("Kathmandu", "Solukhumbu", "Sarlahi"))
+
+write.csv(df_filtered, "filtered_districts_2010_2019.csv", row.names = FALSE)
+\end{verbatim}
+
+\section{Loading the Dataset into JASP}
+Once the filtered dataset was ready and saved as a .csv file, I loaded it into JASP to begin the analysis. Here's how you can do the same:
+
+\begin{enumerate}
+\item \textbf{Open JASP}\\
+Launch the JASP software on your computer. If you haven’t installed it yet, you can download it from \url{https://jasp-stats.org}.
+
+\item \textbf{Open your dataset} \\
+From the menu bar, click on \texttt{File > Open > Computer}, then browse and select your saved \texttt{.csv} file (e.g., \texttt{climate\_filtered.csv}).
+
+\item \textbf{View your data} \\
+Once the file is opened, the dataset will appear in spreadsheet format. Each column represents a variable (e.g., District, Year, Temp\_2m), and each row is an observation.
+
+\item \textbf{Check variable types}\\
+JASP automatically assigns variable types (e.g., nominal, ordinal, scale). You can see these as small icons next to column headers. Make sure they are correct:
+\begin{itemize}
+    \item \textbf{Scale} (ruler icon): Used for numeric variables where calculations like mean or standard deviation make sense, e.g., \texttt{Temp\_2m} or \texttt{Precipitation}.
+    
+    \item \textbf{Ordinal} (bars with order): Used for categorical variables that have a meaningful order but not a fixed numerical difference between values, such as \texttt{Month} or \texttt{Education level}.
+    
+    \item \textbf{Nominal} (venn diagram icon): Used for categorical variables with no natural order, such as \texttt{District}, \texttt{Gender}, or \texttt{Station\_Name}.
+\end{itemize}
+
+\end{enumerate}
+
+\section{Editing Data in JASP}
+
+JASP not only allows you to analyze your data but also offers simple tools to make quick edits directly within the software. This can be very helpful if you notice small errors or want to make adjustments without going back to your original dataset.
+
+Here’s how you can edit your data in JASP:
+
+\begin{enumerate}
+    \item \textbf{Access the Edit Mode} \\
+    After loading your dataset, look for the \texttt{Edit Data} option at the top left corner. Click to enter edit mode.
+
+% figure here--------------------------
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/edit option.png}
+\caption{Ribbon Bar}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/edit mode.png}
+\caption{Edit Mode Ribbon Bar}
+\end{figure}
+
+    \item \textbf{Modify Data Cells} \\
+    In edit mode, you can click on any cell in the dataset and type new values. This is useful for correcting typos, filling in missing data manually, or updating incorrect entries.
+
+    \item \textbf{Rename Variables} \\
+    You can also rename columns by clicking on the variable name at the top of each column and typing a new name. This helps make your dataset clearer and easier to understand.
+
+    \item \textbf{Add or Remove Variables} \\
+    While editing, you can add new columns for calculated variables or delete unnecessary ones to simplify your dataset.
+    The following columns were removed:
+
+\begin{itemize}
+    \item \texttt{RH\_2m} (Relative Humidity at 2 meters)
+    \item \texttt{WetBulbTemp\_2m} (Wet Bulb Temperature at 2 meters)
+    \item \texttt{MaxTemp\_2m} (Maximum Temperature at 2 meters)
+    \item \texttt{MinTemp\_2m} (Minimum Temperature at 2 meters)
+    \item \texttt{TempRange\_2m} (Temperature Range at 2 meters)
+    \item \texttt{EarthSkinTemp} (Temperature of Earth’s Surface)
+    \item \texttt{MaxWindSpeed\_10m} (Maximum Wind Speed at 10 meters)
+    \item \texttt{MinWindSpeed\_10m} (Minimum Wind Speed at 10 meters)
+    \item \texttt{WindSpeedRange\_10m} (Wind Speed Range at 10 meters)
+    \item \texttt{MaxWindSpeed\_50m} (Maximum Wind Speed at 50 meters)
+    \item \texttt{MinWindSpeed\_50m} (Minimum Wind Speed at 50 meters)
+    \item \texttt{WindSpeedRange\_50m} (Wind Speed Range at 50 meters)
+\end{itemize}
+
+To make it easier to analyze climate trends over time, I added a new column called \texttt{Year} to the dataset. This column was created by extracting the year from the existing \texttt{Date} column.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/year_col.png}
+\caption{Adding Year Column}
+\end{figure}
+
+    \item \textbf{Exit Edit Mode} \\
+    When you’re done, click the \texttt{Edit} button again to exit editing and return to analysis mode.
+
+    \item \textbf{Save Your Changes} \\
+    Keep in mind, any edits made inside JASP are temporary unless you save your project as a \texttt{.jasp} file. If you reload the original CSV, the edits won’t be preserved.
+\end{enumerate}
+
+Editing data directly in JASP can save time and streamline your workflow, especially for quick fixes or small adjustments.
+
+\section{Data Analysis}
+
+With the dataset cleaned, filtered, and properly formatted, it’s time to start exploring the climate data to uncover important patterns and trends. This phase uses JASP’s powerful yet user-friendly tools for descriptive statistics and visualizations, which help us better understand the data before moving to more advanced analyses.
+\clearpage
+
+\input{chapter 10/descriptive_stats.tex}
+\input{chapter 10/correlation.tex}
+\input{chapter 10/regression.tex}
+\input{chapter 10/anova.tex}
+
+
+
+
